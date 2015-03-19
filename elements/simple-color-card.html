@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="simple-color-card" attributes="color">
+  <template>
+  	<style>
+  		:host {
+  			display: block;
+        font-family: sans-serif;
+  		}
+  		.card {
+  			color: #333;
+  			font-size: 24px;
+  			margin: 40px auto;
+  			padding: 20px;
+  			background-color: #fff;
+  			max-width: 500px;
+  			min-height: 200px;
+  			text-align: justify;
+  			-webkit-box-shadow: #555 2px 2px 10px;
+  			-moz-box-shadow: #555 2px 2px 10px;
+  			box-shadow: #555 2px 2px 10px;
+        position: relative;
+  		}
+
+      span.color {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 14px;
+        color: #444;
+      }
+
+  	</style>
+  	<div class="card" style="background-color: {{ color }}">
+  		<content></content>
+
+      <span class="color">
+        Color: {{ color }}
+      </span>
+  	</div>
+  </template>
+  <script>
+    Polymer({
+      color: "#fff"
+    });
+  </script>
+</polymer-element>

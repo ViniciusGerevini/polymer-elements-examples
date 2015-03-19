@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Example of components built with Polymer" />
+    <meta name="keywords" content="Polymer, Web Components, demos" />
+
+    <title>Polymer Examples</title>
+
+    <link rel="stylesheet" type="text/css" href="default.css">
+
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="elements/simple-card.html">
+    <link rel="import" href="elements/simple-color-card.html">
+    <link rel="import" href="elements/simple-color-card.html">
+    <link rel="import" href="elements/simple-element-js.html">
+    <link rel="import" href="elements/github-card.html">
+    <link rel="import" href="elements/click-box.html">
+    <link rel="import" href="elements/bind-list.html">
+    <link rel="import" href="elements/header-menu.html">
+    <link rel="import" href="elements/footer-info.html">
+
+
+  </head>
+  <body>
+
+    <h1>Sample custom elements built with Polymer</h1>
+    <hr/>
+    <header-menu></header-menu>
+
+
+    <h2>Simple card</h2>
+    <simple-card>Hi! I'm Just a card built with Polymer!</simple-card>
+
+    <a href="demos/simple-cards.html">Go to demo page</a>
+    <hr/>
+
+
+    <h2>Simple color card with default color attribute</h2>
+    <simple-color-card>Hi! I'm Just a colored card built with Polymer!</simple-color-card>
+
+    <hr/>
+
+
+    <h2>Simple color card with color attribute</h2>
+    <simple-color-card color="#5A73BE ">Hi! I'm Just another colored card built with Polymer!</simple-color-card>
+    <hr/>
+
+
+    <h2>Custom element created using only JS</h2>
+    <simple-element-js>I'm a custom element</simple-element-js>
+    <hr/>
+
+
+    <h2>Github Card Element with life cycle and core-ajax</h2>
+    <github-card user="viniciusgerevini" id="githubCard"></github-card>
+
+    <a href="demos/lifecycle.html">Go to demo page</a>
+    <hr/>
+
+
+    <h2>Event Handler Sample</h2>
+    <click-box></click-box>
+
+    <a href="demos/event-handler.html">Go to demo page</a>
+    <hr/>
+
+
+    <h2>Binds and template examples</h2>
+    <bind-list></bind-list>
+
+    <a href="demos/binds.html">Go to demo page</a>
+    <hr/>
+    <footer-info></footer-info>
+  </body>
+</html>

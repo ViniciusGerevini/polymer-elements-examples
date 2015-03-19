@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="click-box" on-click="{{clickHandler}}"> <!-- declarative event mapping -->
+  <template>
+  	<style>
+  		:host {
+  			background-color: #5A73BE;
+  			width: 300px;
+  			height: 200px;
+  			display:block;
+  			margin: 0 auto;
+  			color: #fff;
+  			text-align: center;
+        cursor: pointer;
+  		}
+  	</style>
+  	<br/><br/>
+  	You clicked me {{ clickCounter }} times.
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    Your mouse is {{ hoverStatus }} me!!!
+
+
+  </template>
+  <script>
+    Polymer({
+      created: function() {
+      	this.clickCounter = 0;
+        this.hoverStatus = "out of";
+      },
+      //Imperative event mapping
+      eventDelegates: {
+        mouseover: 'mouseOverHandler',
+        mouseout: 'mouseOutHandler'
+      },
+
+      clickHandler: function(event, detail, sender) {
+      	this.clickCounter++;
+      },
+      mouseOverHandler: function(event, detail, sender) {
+        this.hoverStatus = "on";
+      },
+      mouseOutHandler: function(event, detail, sender) {
+        this.hoverStatus = "out of";
+      }
+    });
+  </script>
+</polymer-element>

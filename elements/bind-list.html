@@ -1,0 +1,79 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="bind-list">
+  <template>
+  	<style>
+  		:host {
+        width: 500px;
+  			display: block;
+        margin: 0 auto;
+        font-family: sans-serif;
+        text-align: center;
+        background-color: #fafafa;
+        padding: 20px;
+  		}
+
+      ol {
+        list-style-type: upper-roman;
+      }
+
+      li {
+
+      }
+  	</style>
+
+    <input type="text" value="{{newItem}}" placeholder="New Item"/>
+    <button on-click="{{ buttonClickHandler}}">Add</button>
+
+    <br/><br/>
+    If you change these:
+
+    <ol>
+      <template repeat="{{item in list}}">
+        <!-- THE BINDS ARE TWO-WAY BY DEFAULT.
+            IF YOU CHANGE THESE VALUES IT WILL CHANGE THE OBJECTS VALUES -->
+        <li><input type="text" value="{{ item.name }}"></li>
+      </template>
+    </ol>
+
+    <!-- THIS IS A ITERATIVE BINDING -->
+    These references will change:
+    <template repeat="{{item in list}}"><br/>{{ item.name }}</template>
+
+    <br/><br/></br>
+
+    <!-- THIS IS A ONE TIME BIDING. IT WILL NEVER CHANGE -->
+    This elements won't change:
+    <template repeat="{{item in list}}"><br/>[[ item.name ]]</template>
+    <br/><br/><br/>
+
+    <!-- THIS IS A CONDITIONAL TEMPLATE -->
+    <template if="{{ list.length > 2 }}">
+      Your list is getting big!
+    </template>
+
+    <br/><br/>
+
+    <!-- THIS IS A SIMPLE BIND.
+          THE TEMPLATE IS BOUND TO A OBJECT -->
+    I am a list
+    <template bind="{{list}}">
+        <br/>
+        Size: {{ length }}
+    </template>
+
+
+  </template>
+  <script>
+    Polymer({
+      created: function() {
+        this.list = [{"name": "Polymer"}, {"name": "web components"}];
+        this.newItem = "";
+      },
+      buttonClickHandler: function() {
+        this.list.push({ "name": this.newItem });
+        this.newItem = "";
+      }
+    });
+  </script>
+</polymer-element>

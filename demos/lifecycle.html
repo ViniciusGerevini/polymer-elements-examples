@@ -292,10 +292,10 @@ html /deep/ [segment], html /deep/ segment {
 
 
 
-    
 
 
-    
+
+
 
 
 
@@ -350,7 +350,7 @@ html /deep/ [segment], html /deep/ segment {
         }
         return xhr;
       },
-    
+
       toQueryString: function(params) {
         var r = [];
         for (var n in params) {
@@ -364,7 +364,7 @@ html /deep/ [segment], html /deep/ segment {
       isBodyMethod: function(method) {
         return this.bodyMethods[(method || '').toUpperCase()];
       },
-      
+
       bodyMethods: {
         POST: 1,
         PUT: 1,
@@ -391,7 +391,7 @@ html /deep/ [segment], html /deep/ segment {
     });
 
   </script>
-  
+
 </polymer-element>
 <polymer-element name="core-ajax" hidden="" attributes="url handleAs auto params response error method headers body contentType withCredentials progress loading" assetpath="../bower_components/core-ajax/">
 <script>
@@ -737,11 +737,11 @@ html /deep/ [segment], html /deep/ segment {
       var hasContentType = Object.keys(args.headers).some(function (header) {
         return header.toLowerCase() === 'content-type';
       });
-      // No Content-Type should be specified if sending `FormData`.  
+      // No Content-Type should be specified if sending `FormData`.
       // The UA must set the Content-Type w/ a calculated  multipart boundary ID.
       if (args.body instanceof FormData) {
         delete args.headers['Content-Type'];
-      } 
+      }
       else if (!hasContentType && this.contentType) {
         args.headers['Content-Type'] = this.contentType;
       }
@@ -897,7 +897,7 @@ html /deep/ [segment], html /deep/ segment {
 </polymer-element>
 <polymer-element name="header-menu" assetpath="../elements/">
   <template>
-  	<a href="/index.html">Home</a> | <a href="/demos/simple-cards.html">Simple Elements</a> | <a href="/demos/lifecycle.html">Github Card</a> | <a href="/demos/event-handler.html">Events box</a> | <a href="/demos/binds.html">Binds</a>
+  	<a href="/polymer-elements-examples">Home</a> | <a href="/polymer-elements-examples/demos/simple-cards.html">Simple Elements</a> | <a href="/polymer-elements-examples/demos/lifecycle.html">Github Card</a> | <a href="/polymer-elements-examples/demos/event-handler.html">Events box</a> | <a href="/polymer-elements-examples/demos/binds.html">Binds</a>
   </template>
 <script>Polymer('header-menu');</script></polymer-element>
 <polymer-element name="footer-info" assetpath="../elements/">
@@ -924,5 +924,5 @@ html /deep/ [segment], html /deep/ segment {
 
     <footer-info></footer-info>
 
-  
+
 </body></html>

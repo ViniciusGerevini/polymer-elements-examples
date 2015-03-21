@@ -3,103 +3,104 @@
 
 <polymer-element name="github-card" attributes="user">
   <template>
-  	<style>
-  		:host {
-  			display: block;
-  			font-family: sans-serif;
-  		}
-  		.card {
-  			background-color: #fff;
-  			color: #333;
-  			font-size: 20px;
-  			margin: 40px auto;
-  			padding: 20px;
-  			background-color: #fff;
-  			max-width: 500px;
-  			min-height: 200px;
-  			text-align: justify;
-  			-webkit-box-shadow: #555 2px 2px 10px;
-  			-moz-box-shadow: #555 2px 2px 10px;
-  			box-shadow: #555 2px 2px 10px;
-  			position: relative;
-  		}
+    <style>
+      :host {
+        display: block;
+        font-family: sans-serif;
+      }
+      .card {
+        background-color: #fff;
+        color: #333;
+        font-size: 20px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        max-width: 500px;
+        min-height: 200px;
+        text-align: justify;
+        -webkit-box-shadow: #555 2px 2px 10px;
+        -moz-box-shadow: #555 2px 2px 10px;
+        box-shadow: #555 2px 2px 10px;
+        position: relative;
+      }
 
-  		.avatar {
-  			background: url('') no-repeat center center / cover #eee;
-  			border-radius: 50%;
-  			width: 150px;
-  			height: 150px;
-  			float: left;
-  		}
+      .avatar {
+        background: url('') no-repeat center center / cover #eee;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        float: left;
+      }
 
-  		.info {
-  			float: left;
-  			margin-left: 30px;
-  		}
+      .info {
+        float: left;
+        margin-left: 30px;
+      }
 
-  		.details {
-  			font-size: 16px;
-  			line-height: 27px;
-  			margin-top: 20px;
-  		}
+      .details {
+        font-size: 16px;
+        line-height: 27px;
+        margin-top: 20px;
+      }
 
-  		h1 {
-  			font-size: 24px;
-  			margin: 0px;
-  			border-bottom: 1px solid #ddd;
-  			margin-bottom: 5px;
-  		}
-  		a.github {
-  			color: #333;
-  			font-size: 14px;
-  			position: absolute;
-  			bottom: 10px;
-  			right: 10px;
-  		}
+      h1 {
+        font-size: 24px;
+        margin: 0px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 5px;
+      }
 
-  	</style>
+      a.github {
+        color: #333;
+        font-size: 14px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
 
-  	<core-ajax url="https://api.github.com/users/{{user}}" auto handleAs="json" response="{{response}}"></core-ajax>
+    </style>
 
-  	<div class="card">
+    <core-ajax url="https://api.github.com/users/{{user}}" auto handleAs="json" response="{{response}}"></core-ajax>
 
-  		<div class="avatar" style="background-image: url('{{response.avatar_url}}')"></div>
-  		<div class="info">
-  			<h1>{{ response.name }}</h1>
-  			<span>{{ response.location }}</span>
+    <div class="card">
 
-  			<div class="details">
-	  			Repositories: {{response.public_repos }}<br/>
-	  			Followers: {{response.followers }}<br/>
-	  			Following: {{response.following }}
-  			</div>
-  			<a class="github" href="{{response.html_url }}" target="_new">Go to Github profile</a>
-  		</div>
-  	</div>
+      <div class="avatar" style="background-image: url('{{response.avatar_url}}')"></div>
+      <div class="info">
+        <h1>{{ response.name }}</h1>
+        <span>{{ response.location }}</span>
+
+        <div class="details">
+          Repositories: {{response.public_repos }}<br/>
+          Followers: {{response.followers }}<br/>
+          Following: {{response.following }}
+        </div>
+        <a class="github" href="{{response.html_url }}" target="_new">Go to Github profile</a>
+      </div>
+    </div>
   </template>
   <script>
-  	Polymer('github-card', {
-  	  created: function() {
-  	  	console.log("Element created");
-  	  },
-  	  ready: function() {
-  	  	console.log("Element ready");
-  	  },
-  	  attached: function () {
-  	  	console.log("Element attached");
-  	  },
-  	  domReady: function() {
-  	  	console.log("Element is realy ready");
-  	  },
-  	  detached: function() {
-  	  	console.log("Element detached");
-  	  },
-  	  attributeChanged: function(attrName, oldVal, newVal) {
-  	    console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
-  	  },
-  	  userChanged: function(oldValue, newValue) {
-  	  		console.log("Now I am " + newValue);
-  	  }
-  	});
+    Polymer('github-card', {
+      created: function() {
+        console.log("Element created");
+      },
+      ready: function() {
+        console.log("Element ready");
+      },
+      attached: function () {
+        console.log("Element attached");
+      },
+      domReady: function() {
+        console.log("Element is realy ready");
+      },
+      detached: function() {
+        console.log("Element detached");
+      },
+      attributeChanged: function(attrName, oldVal, newVal) {
+        console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+      },
+      userChanged: function(oldValue, newValue) {
+          console.log("Now I am " + newValue);
+      }
+    });
   </script>
 </polymer-element>

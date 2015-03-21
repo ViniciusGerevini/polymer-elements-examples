@@ -2,25 +2,22 @@
 
 <polymer-element name="bind-list">
   <template>
-  	<style>
-  		:host {
+    <style>
+      :host {
         width: 500px;
-  			display: block;
+        display: block;
         margin: 0 auto;
         font-family: sans-serif;
         text-align: center;
         background-color: #fafafa;
         padding: 20px;
-  		}
+      }
 
       ol {
         list-style-type: upper-roman;
       }
 
-      li {
-
-      }
-  	</style>
+    </style>
 
     <input type="text" value="{{newItem}}" placeholder="New Item"/>
     <button on-click="{{ buttonClickHandler}}">Add</button>

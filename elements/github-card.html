@@ -1,9 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
-<polymer-element name="github-card" attributes="user">
-  <template>
-    <style>
+<dom-module id="github-card">
+  <style>
       :host {
         display: block;
         font-family: sans-serif;
@@ -59,48 +58,60 @@
       }
 
     </style>
+  <template>
 
-    <core-ajax url="https://api.github.com/users/{{user}}" auto handleAs="json" response="{{response}}"></core-ajax>
+    <iron-ajax url="{{computeUrl(user)}}" auto="" handle-as="json" last-response="{{response}}"></iron-ajax>
 
     <div class="card">
 
-      <div class="avatar" style="background-image: url('{{response.avatar_url}}')"></div>
+      <div class="avatar" style="{{computeStyle(response)}}"></div>
       <div class="info">
         <h1>{{ response.name }}</h1>
         <span>{{ response.location }}</span>
 
         <div class="details">
-          Repositories: {{response.public_repos }}<br/>
-          Followers: {{response.followers }}<br/>
-          Following: {{response.following }}
+          Repositories: <span>{{response.public_repos }}</span><br>
+          Followers: <span>{{response.followers }}</span><br>
+          Following: <span>{{response.following }}</span>
         </div>
         <a class="github" href="{{response.html_url }}" target="_new">Go to Github profile</a>
       </div>
     </div>
   </template>
-  <script>
-    Polymer('github-card', {
-      created: function() {
-        console.log("Element created");
-      },
-      ready: function() {
-        console.log("Element ready");
-      },
-      attached: function () {
-        console.log("Element attached");
-      },
-      domReady: function() {
-        console.log("Element is realy ready");
-      },
-      detached: function() {
-        console.log("Element detached");
-      },
-      attributeChanged: function(attrName, oldVal, newVal) {
-        console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
-      },
-      userChanged: function(oldValue, newValue) {
-          console.log("Now I am " + newValue);
+</dom-module>
+<script>
+  Polymer({
+    is: 'github-card',
+    properties: {
+      attribute: { observer: 'attributeChanged' },
+      user: {
+        notify: true,
+        observer: 'userChanged'
       }
-    });
-  </script>
-</polymer-element>
+    },
+    created: function () {
+      console.log('Element created');
+    },
+    ready: function () {
+      console.log('Element ready');
+    },
+    attached: function () {
+      console.log('Element attached');
+    },
+    detached: function () {
+      console.log('Element detached');
+    },
+    attributeChanged: function (oldVal, attrName, newVal) {
+      console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+    },
+    userChanged: function (newValue, oldValue) {
+      console.log('Now I am ' + newValue);
+    },
+    computeUrl: function (user) {
+      return 'https://api.github.com/users/' + user;
+    },
+    computeStyle: function (response) {
+      return 'background-image: url(\'' + response.avatar_url + '\')';
+    }
+  });
+</script>

@@ -1,8 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="simple-card" noscript>
-  <template>
-    <style>
+<dom-module id="simple-card">
+  <style>
       :host {
         display: block;
       }
@@ -21,9 +20,13 @@
         box-shadow: #555 2px 2px 10px;
       }
     </style>
+  <template>
 
     <div class="card">
       <content></content>
     </div>
   </template>
-</polymer-element>
+</dom-module>
+<script>
+  Polymer({ is: 'simple-card' });
+</script>

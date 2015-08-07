@@ -22,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.5.5",
-    "core-ajax": "Polymer/core-ajax#~0.5.5"
+    "polymer": "~1.0.8",
+    "iron-ajax": "PolymerElements/iron-ajax#~1.0.3"
   }
 }

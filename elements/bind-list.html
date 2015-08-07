@@ -1,8 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="bind-list">
-  <template>
-    <style>
+<dom-module id="bind-list">
+  <style>
       :host {
         width: 500px;
         display: block;
@@ -18,59 +17,48 @@
       }
 
     </style>
+  <template>
 
-    <input type="text" value="{{newItem}}" placeholder="New Item"/>
-    <button on-click="{{ buttonClickHandler}}">Add</button>
+    <input type="text" value="{{ newItem::input }}" placeholder="New Item">
+    <button on-click="buttonClickHandler">Add</button>
 
-    <br/><br/>
+    <br><br>
     If you change these:
 
     <ol>
-      <template repeat="{{item in list}}">
-        <!-- THE BINDS ARE TWO-WAY BY DEFAULT.
-            IF YOU CHANGE THESE VALUES IT WILL CHANGE THE OBJECTS VALUES -->
-        <li><input type="text" value="{{ item.name }}"></li>
+      <template is="dom-repeat" items="{{ list }}" as="item">
+        <li><input type="text" value="{{ item.name::input }}"></li>
       </template>
     </ol>
 
-    <!-- THIS IS A ITERATIVE BINDING -->
     These references will change:
-    <template repeat="{{item in list}}"><br/>{{ item.name }}</template>
+    <template is="dom-repeat" items="{{ list }}" as="item"><br>{{ item.name }}</template>
 
-    <br/><br/></br>
-
-    <!-- THIS IS A ONE TIME BIDING. IT WILL NEVER CHANGE -->
-    This elements won't change:
-    <template repeat="{{item in list}}"><br/>[[ item.name ]]</template>
-    <br/><br/><br/>
-
-    <!-- THIS IS A CONDITIONAL TEMPLATE -->
-    <template if="{{ list.length > 2 }}">
-      Your list is getting big!
-    </template>
-
-    <br/><br/>
-
-    <!-- THIS IS A SIMPLE BIND.
-          THE TEMPLATE IS BOUND TO A OBJECT -->
-    I am a list
-    <template bind="{{list}}">
-        <br/>
-        Size: {{ length }}
-    </template>
-
+    <br><br><br>
 
   </template>
-  <script>
-    Polymer({
-      created: function() {
-        this.list = [{"name": "Polymer"}, {"name": "web components"}];
-        this.newItem = "";
-      },
-      buttonClickHandler: function() {
-        this.list.push({ "name": this.newItem });
-        this.newItem = "";
-      }
-    });
-  </script>
-</polymer-element>
+</dom-module>
+<script>
+  Polymer({
+    is: 'bind-list',
+    properties: {
+        list : {
+            type: Array,
+            notify: true,
+            value: [{ 'name': 'Polymer' },
+        { 'name': 'web components' }]
+        },
+        newItem: ""
+    },
+
+    buttonClickHandler: function () {
+        this.push("list", { 'name': this.newItem });
+        this.newItem = '';
+    },
+    check: function(list) {
+        console.log(list.length);
+        return list.length > 3;
+    }
+
+  });
+</script>

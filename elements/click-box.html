@@ -1,8 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="click-box" on-click="{{clickHandler}}"> <!-- declarative event mapping -->
-  <template>
-    <style>
+<dom-module id="click-box">
+  <style>
       :host {
         background-color: #5A73BE;
         width: 300px;
@@ -13,38 +12,62 @@
         text-align: center;
         cursor: pointer;
       }
-    </style>
-    <br/><br/>
-    You clicked me {{ clickCounter }} times.
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    Your mouse is {{ hoverStatus }} me!!!
 
+      .inner {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  <template>
+    <div class="inner"  on-click="clickHandler">
+
+    <br><br>
+    You clicked me <span>{{ clickCounter }}</span> times.
+    <br>
+    <br>
+    <br>
+    <br>
+    Your mouse is <span>{{ hoverStatus }}</span> me!!!
+
+    </div>
 
   </template>
-  <script>
-    Polymer({
-      created: function() {
-        this.clickCounter = 0;
-        this.hoverStatus = "out of";
-      },
-      //Imperative event mapping
-      eventDelegates: {
-        mouseover: 'mouseOverHandler',
-        mouseout: 'mouseOutHandler'
-      },
+</dom-module>
+<script>
+  Polymer({
+    is: 'click-box',
+    properties: {
+        clickCounter : {
+            type: Number,
+            notify: true,
+            readOnly: false,
+            value: 0
+        },
+        hoverStatus: {
+            type: String,
+            notify: true,
+            readOnly: false,
+            value: "out of"
+        }
+    },
 
-      clickHandler: function(event, detail, sender) {
+    listeners: {
+        'mouseover': 'mouseOverHandler',
+        'mouseout': 'mouseOutHandler'
+    },
+
+    clickHandler: function() {
         this.clickCounter++;
-      },
-      mouseOverHandler: function(event, detail, sender) {
-        this.hoverStatus = "on";
-      },
-      mouseOutHandler: function(event, detail, sender) {
-        this.hoverStatus = "out of";
-      }
-    });
-  </script>
-</polymer-element>
+    },
+
+    mouseOutHandler: function() {
+        this.hoverStatus = 'out of';
+    },
+
+    mouseOverHandler: function() {
+        this.hoverStatus = 'on';
+    },
+  });
+</script>
+
+<link rel="import" href="../bower_components/polymer/polymer.html">

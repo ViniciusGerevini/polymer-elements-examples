@@ -1,8 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="simple-color-card" attributes="color">
-  <template>
-    <style>
+<dom-module id="simple-color-card">
+  <style>
       :host {
         display: block;
         font-family: sans-serif;
@@ -31,17 +30,28 @@
       }
 
     </style>
-    <div class="card" style="background-color: {{ color }}">
+  <template>
+    <div class="card" style="{{computeStyle(color)}}">
       <content></content>
 
       <span class="color">
-        Color: {{ color }}
+        Color: <span>{{ color }}</span>
       </span>
     </div>
   </template>
-  <script>
-    Polymer({
-      color: "#fff"
-    });
-  </script>
-</polymer-element>
+</dom-module>
+<script>
+  Polymer({
+    is: 'simple-color-card',
+    properties: {
+      color: {
+        type: String,
+        value: '#fff',
+        notify: true
+      }
+    },
+    computeStyle: function (color) {
+      return 'background-color: ' + color;
+    }
+  });
+</script>
